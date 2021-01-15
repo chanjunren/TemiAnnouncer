@@ -1,4 +1,4 @@
-package com.robosolutions.temiannouncer;
+package com.robosolutions.temiannouncer.ui;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.robosolutions.temiannouncer.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     NavController navController;
@@ -37,15 +39,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.taskPageButton: {
-                navController.navigate(R.id.action_homeFragment_to_newTaskFragment);
-                break;
-            }
-            case R.id.configurationsPageButton: {
-                navController.navigate(R.id.action_homeFragment_to_configurationFragment);
-                break;
-            }
+        int viewId = v.getId();
+        if (viewId == R.id.taskPageButton) {
+            navController.navigate(R.id.action_homeFragment_to_newTaskFragment);
+        } else if (viewId == R.id.configurationsPageButton) {
+            navController.navigate(R.id.action_homeFragment_to_configurationFragment);
         }
     }
 }

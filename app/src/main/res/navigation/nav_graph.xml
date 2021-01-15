@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/newTaskFragment"
-        android:name="com.robosolutions.temiannouncer.NewTaskFragment"
+        android:name="com.robosolutions.temiannouncer.ui.NewTaskFragment"
         android:label="fragment_new_task"
-        tools:layout="@layout/fragment_new_task" />
+        tools:layout="@layout/fragment_task" />
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.robosolutions.temiannouncer.HomeFragment"
+        android:name="com.robosolutions.temiannouncer.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/configurationFragment"
-        android:name="com.robosolutions.temiannouncer.ConfigurationFragment"
+        android:name="com.robosolutions.temiannouncer.ui.ConfigurationFragment"
         android:label="fragment_configuration"
         tools:layout="@layout/fragment_configuration" />
 

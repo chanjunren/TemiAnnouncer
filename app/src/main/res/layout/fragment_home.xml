@@ -4,35 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
-
+    tools:context=".ui.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/taskPageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="180dp"
-            android:text="Task"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/configurationsPageButton"
+        <ImageView
+            android:layout_width="750dp"
+            android:layout_height="666dp"
+            android:src="@drawable/home_bgcircle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.473" />
+            android:layout_marginTop="84dp"
+            android:layout_marginStart="250dp"
+            />
 
-        <Button
+        <ImageView
+            android:id="@+id/temi_announcer_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_temi_logo"
+            android:layout_marginTop="146dp"
+            android:layout_marginStart="430dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/configurationsPageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="264dp"
-            android:text="Configure"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="271dp"
+            android:layout_marginTop="42dp"
+            android:contentDescription="@string/configure_icon_description"
+            android:src="@drawable/home_configureicon"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintEnd_toStartOf="@+id/taskPageButton"
+            app:layout_constraintHorizontal_bias="0.377"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.473" />
+
+            />
+
+        <ImageView
+            android:id="@+id/taskPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/task_icon_description"
+            android:src="@drawable/home_taskicon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="697dp"
+            android:layout_marginTop="42dp" />
+
+        <ImageView
+            android:id="@+id/mapPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="331dp"
+            android:layout_marginStart="852dp"
+            android:contentDescription="@string/map_icon_description"
+            android:src="@drawable/home_mapicon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/savedPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/saved_icon_description"
+            android:src="@drawable/home_savedicon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="570dp"
+            android:layout_marginStart="697dp"
+            />
+        <ImageView
+            android:id="@+id/historyPageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/history_icon_description"
+            android:src="@drawable/home_historyicon"
+            android:layout_marginTop="570dp"
+            android:layout_marginStart="271dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+        />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/extra_icon_description"
+            android:src="@drawable/home_extraicon"
+            android:layout_marginTop="319dp"
+            android:layout_marginStart="142dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+        />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

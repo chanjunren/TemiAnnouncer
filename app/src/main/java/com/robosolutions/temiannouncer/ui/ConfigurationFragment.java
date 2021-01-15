@@ -1,4 +1,4 @@
-package com.robosolutions.temiannouncer;
+package com.robosolutions.temiannouncer.ui;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.robosolutions.temiannouncer.R;
 
 public class ConfigurationFragment extends Fragment {
 
