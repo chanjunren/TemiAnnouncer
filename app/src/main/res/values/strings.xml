@@ -8,4 +8,6 @@
     <string name="saved_icon_description">Saved Icon</string>
     <string name="history_icon_description">History Icon</string>
     <string name="extra_icon_description">Extra Icon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

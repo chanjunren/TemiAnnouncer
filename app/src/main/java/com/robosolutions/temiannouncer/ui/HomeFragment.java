@@ -15,6 +15,11 @@ import android.view.ViewGroup;
 import com.robosolutions.temiannouncer.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
     NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {

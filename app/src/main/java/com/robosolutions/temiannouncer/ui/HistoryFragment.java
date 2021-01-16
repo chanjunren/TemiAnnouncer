@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 
 import com.robosolutions.temiannouncer.R;
 
-public class ConfigurationFragment extends Fragment {
-    public ConfigurationFragment() {
+public class HistoryFragment extends Fragment {
+    public HistoryFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,6 @@ public class ConfigurationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_configuration, container, false);
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 }

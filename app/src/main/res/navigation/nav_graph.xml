@@ -6,8 +6,8 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/newTaskFragment"
-        android:name="com.robosolutions.temiannouncer.ui.NewTaskFragment"
+        android:id="@+id/taskFragment"
+        android:name="com.robosolutions.temiannouncer.ui.TaskFragment"
         android:label="fragment_new_task"
         tools:layout="@layout/fragment_task" />
 
@@ -18,15 +18,39 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_newTaskFragment"
-            app:destination="@id/newTaskFragment" />
+            app:destination="@id/taskFragment" />
         <action
             android:id="@+id/action_homeFragment_to_configurationFragment"
-            app:destination="@id/configurationFragment" />
+            app:destination="@id/confFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/configurationFragment"
+        android:id="@+id/confFragment"
         android:name="com.robosolutions.temiannouncer.ui.ConfigurationFragment"
         android:label="fragment_configuration"
         tools:layout="@layout/fragment_configuration" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.robosolutions.temiannouncer.ui.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.robosolutions.temiannouncer.ui.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.robosolutions.temiannouncer.ui.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
 
 </navigation>

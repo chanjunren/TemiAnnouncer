@@ -11,7 +11,35 @@
         android:layout_height="match_parent">
 
 
+        <ImageView
+            android:id="@+id/confHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/conf_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="31dp" />
 
+        <ImageView
+            android:id="@+id/confBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="1007dp"
+            android:layout_marginTop="43dp" />
+
+        <ImageView
+            android:id="@+id/confPlaceHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/conf_no_map"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="319dp"
+            android:layout_marginTop="171dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
