@@ -14,22 +14,23 @@ import java.util.List;
 // provide data to UI
 // Communication center between UI and repository
 public class SavedViewModel extends AndroidViewModel {
-    private final SequenceRepository repository;
+    private final SequenceRepository mSequenceRepo;
 
-    private final LiveData<List<Sequence>> allSequences;
+    // Why final?
+    private final LiveData<List<Sequence>> mAllSequences;
 
     public SavedViewModel(Application application) {
         super(application);
-        repository = new SequenceRepository(application);
-        allSequences = repository.getAllSequences();
+        mSequenceRepo = new SequenceRepository(application);
+        mAllSequences = mSequenceRepo.getAllSequences();
     }
 
     LiveData<List<Sequence>> getAllSequences() {
-        return allSequences;
+        return mAllSequences;
     }
     // Created a wrapper insert() method that calls the Repository's insert() method.
     // In this way, the implementation of insert() is encapsulated from the UI.
     public void insertSequence(Sequence sequence) {
-        repository.insertSequence(sequence);
+        mSequenceRepo.insertSequence(sequence);
     }
 }

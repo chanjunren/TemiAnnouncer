@@ -13,8 +13,8 @@ import java.util.List;
 // Meant to mediate between multiple data sources
 // More complex example: https://github.com/android/architecture-components-samples/tree/main/BasicSample
 public class SequenceRepository {
-    private SequenceDao seqDao;
-    private LiveData<List<Sequence>> seqs;
+    private SequenceDao mSeqDao;
+    private LiveData<List<Sequence>> mAllSequences;
 
     // Note that in order to unit test the Repository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -23,19 +23,19 @@ public class SequenceRepository {
     public SequenceRepository(Application application) {
         SequenceRoomDatabase db = SequenceRoomDatabase.getDatabase(application);
         // Only need Dao to access DB, no need exposure to DB
-        seqDao = db.sequenceDao();
-        seqs = seqDao.getSequences();
+        mSeqDao = db.sequenceDao();
+        mAllSequences = mSeqDao.getSequences();
     }
 
     public LiveData<List<Sequence>> getAllSequences() {
-        return seqs;
+        return mAllSequences;
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insertSequence(Sequence sequence) {
         SequenceRoomDatabase.getDbWriterExecutor().execute(() -> {
-            seqDao.insert(sequence);
+            mSeqDao.insert(sequence);
         });
     }
 

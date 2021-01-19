@@ -91,6 +91,17 @@
             android:layout_marginStart="88dp"
             android:layout_marginTop="432dp" />
 
+        <EditText
+            android:id="@+id/sequenceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="192dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintStart_toEndOf="@+id/titleLabel"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
