@@ -7,13 +7,17 @@
 
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.robosolutions.temiannouncer.ui.TaskFragment"
+        android:name="com.robosolutions.temiannouncer.views.TaskFragment"
         android:label="fragment_new_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_task" >
+        <action
+            android:id="@+id/action_taskFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.robosolutions.temiannouncer.ui.HomeFragment"
+        android:name="com.robosolutions.temiannouncer.views.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -31,26 +35,54 @@
         <action
             android:id="@+id/action_homeFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_resourcesFragment"
+            app:destination="@id/resourcesFragment" />
     </fragment>
     <fragment
         android:id="@+id/confFragment"
-        android:name="com.robosolutions.temiannouncer.ui.ConfigurationFragment"
+        android:name="com.robosolutions.temiannouncer.views.ConfigurationFragment"
         android:label="fragment_configuration"
-        tools:layout="@layout/fragment_configuration" />
+        tools:layout="@layout/fragment_configuration" >
+        <action
+            android:id="@+id/action_confFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.robosolutions.temiannouncer.ui.MapFragment"
+        android:name="com.robosolutions.temiannouncer.views.MapFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.robosolutions.temiannouncer.ui.HistoryFragment"
+        android:name="com.robosolutions.temiannouncer.views.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
-        android:name="com.robosolutions.temiannouncer.ui.SavedFragment"
+        android:name="com.robosolutions.temiannouncer.views.SavedFragment"
         android:label="fragment_saved"
-        tools:layout="@layout/fragment_saved" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_savedFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resourcesFragment"
+        android:name="com.robosolutions.temiannouncer.views.ResourcesFragment"
+        android:label="fragment_resources"
+        tools:layout="@layout/fragment_resources" >
+        <action
+            android:id="@+id/action_resourcesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>

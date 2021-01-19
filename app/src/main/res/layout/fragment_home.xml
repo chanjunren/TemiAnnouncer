@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    tools:context=".views.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/configurationsPageButton"
+            android:id="@+id/confPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="271dp"
@@ -38,7 +38,7 @@
             android:contentDescription="@string/configure_icon_description"
             android:src="@drawable/home_configureicon"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintEnd_toStartOf="@+id/taskPageButton"
+            app:layout_constraintEnd_toStartOf="@+id/taskPageBtn"
             app:layout_constraintHorizontal_bias="0.377"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +46,7 @@
             />
 
         <ImageView
-            android:id="@+id/taskPageButton"
+            android:id="@+id/taskPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/task_icon_description"
@@ -57,7 +57,7 @@
             android:layout_marginTop="42dp" />
 
         <ImageView
-            android:id="@+id/mapPageButton"
+            android:id="@+id/mapPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="331dp"
@@ -69,7 +69,7 @@
             />
 
         <ImageView
-            android:id="@+id/savedPageButton"
+            android:id="@+id/savedPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/saved_icon_description"
@@ -80,7 +80,7 @@
             android:layout_marginStart="697dp"
             />
         <ImageView
-            android:id="@+id/historyPageButton"
+            android:id="@+id/historyPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/history_icon_description"
@@ -91,11 +91,12 @@
             app:layout_constraintTop_toTopOf="parent"
         />
         <ImageView
+            android:id="@+id/resPageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/extra_icon_description"
-            android:src="@drawable/home_extraicon"
-            android:layout_marginTop="319dp"
+            android:contentDescription="@string/res_icon_description"
+            android:src="@drawable/home_resicon"
+            android:layout_marginTop="331dp"
             android:layout_marginStart="142dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

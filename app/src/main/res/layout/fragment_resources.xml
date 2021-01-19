@@ -4,36 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.MapFragment">
-
+    tools:context=".views.ResourcesFragment">
 
     <ImageView
-        android:id="@+id/mapHeader"
+        android:id="@+id/resHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/map_header"
+        android:src="@drawable/res_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="25dp" />
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="31dp" />
 
     <ImageView
-        android:id="@+id/missingMapImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/map_missing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="315dp"
-        android:layout_marginTop="180dp" />
-
-    <ImageView
-        android:id="@+id/mapBackBtn"
+        android:id="@+id/resBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="1007dp"
-        android:layout_marginTop="43dp"/>
+        android:layout_marginTop="43dp" />
+
+    <ImageView
+        android:id="@+id/addResBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/res_add_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="986dp"
+        android:layout_marginTop="650dp" />
+
+
 </FrameLayout>

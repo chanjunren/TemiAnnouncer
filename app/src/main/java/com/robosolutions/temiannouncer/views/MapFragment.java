@@ -1,4 +1,4 @@
-package com.robosolutions.temiannouncer.ui;
+package com.robosolutions.temiannouncer.views;
 
 import android.os.Bundle;
 
