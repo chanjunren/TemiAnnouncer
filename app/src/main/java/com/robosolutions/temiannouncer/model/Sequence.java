@@ -3,6 +3,9 @@ package com.robosolutions.temiannouncer.model;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.robosolutions.temiannouncer.utils.TypeConverter;
 
 import java.util.List;
 
@@ -15,8 +18,12 @@ public class Sequence {
     @NonNull
     private int seqIdx;
     private String seqId;
+
+    @TypeConverters(TypeConverter.class)
     private List<Step> steps;
     private String imgPrevPath;
+
+    @TypeConverters(TypeConverter.class)
     private List<String> inputs;
 
     public Sequence() {
