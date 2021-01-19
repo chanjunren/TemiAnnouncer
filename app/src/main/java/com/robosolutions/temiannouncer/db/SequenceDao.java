@@ -1,29 +1,29 @@
 package com.robosolutions.temiannouncer.db;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import com.robosolutions.temiannouncer.model.Sequence;
 
-import java.util.ArrayList;
 import java.util.List;
 
-// Interface defining all allowed actions to manipulate data in a DB
-public class SequenceDao {
-    private List<Sequence> sequences;
-    private MutableLiveData<List<Sequence>> liveData;
+// Identifies this Interface as DAO class for Room
+@Dao
+public interface SequenceDao {
 
-    public SequenceDao() {
-        this.liveData = new MutableLiveData<List<Sequence>>();
-        sequences = new ArrayList<>();
-    }
+    // https://developer.android.com/reference/androidx/room/OnConflictStrategy.html
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    void insert(Sequence sequence);
 
-    public void addSequence(Sequence sequence) {
-        this.sequences.add(sequence);
-        liveData.postValue(sequences);
-    }
+    @Query("DELETE from sequenceTable")
+    void deleteAll();
 
-    public void removeSequence(int idx) {
-        this.sequences.remove(idx);
-        liveData.postValue(sequences);
-    }
+    // TO DO: Deleting only one entry
+
+    @Query("SELECT * FROM sequenceTable ORDER BY seqIdx ASC")
+    LiveData<List<Sequence>> getSequences();
+
 }
