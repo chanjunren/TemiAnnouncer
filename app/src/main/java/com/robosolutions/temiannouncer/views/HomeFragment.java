@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.savedPageBtn).setOnClickListener(this);
         view.findViewById(R.id.historyPageBtn).setOnClickListener(this);
         view.findViewById(R.id.resPageBtn).setOnClickListener(this);
+        view.findViewById(R.id.mapPageBtn).setOnClickListener(this);
     }
 
     @Override

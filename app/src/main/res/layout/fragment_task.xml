@@ -62,7 +62,7 @@
             android:layout_marginTop="293dp"/>
 
         <ImageView
-            android:id="@+id/saveBtn"
+            android:id="@+id/saveTaskBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/task_save_btn"
@@ -92,7 +92,7 @@
             android:layout_marginTop="432dp" />
 
         <EditText
-            android:id="@+id/sequenceId"
+            android:id="@+id/sequenceIdInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="108dp"

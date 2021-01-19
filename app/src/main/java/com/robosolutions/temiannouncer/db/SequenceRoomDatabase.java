@@ -2,9 +2,11 @@ package com.robosolutions.temiannouncer.db;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.robosolutions.temiannouncer.model.Sequence;
 
@@ -29,6 +31,7 @@ public abstract class SequenceRoomDatabase extends RoomDatabase {
 
     public static SequenceRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
+            // Can append addCallback(sRoomDatabaseCallback) for future development if needed
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                 SequenceRoomDatabase.class, "sequenceDatabase").build();
         }
@@ -38,4 +41,22 @@ public abstract class SequenceRoomDatabase extends RoomDatabase {
     public static ExecutorService getDbWriterExecutor() {
         return dbWriterExecutor;
     }
+
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+//            dbWriterExecutor.execute(() -> {
+//                SequenceDao dao = INSTANCE.sequenceDao();
+//                dao.deleteAll();
+//
+//                // Can add some default words
+//                Word word = new Word("Hello");
+//                dao.insert(word);
+//                word = new Word("World");
+//                dao.insert(word);
+//            });
+        }
+    };
 }
