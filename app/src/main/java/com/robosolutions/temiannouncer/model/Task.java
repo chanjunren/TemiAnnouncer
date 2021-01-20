@@ -11,30 +11,36 @@ import java.util.List;
 
 // Each entity class represents a SQLite table, you can specify the name of the table to be diff from
 // the class
-@Entity(tableName = "sequenceTable")
-public class Sequence {
+@Entity(tableName = "taskTable")
+public class Task {
     // Annotations identify how each part of the class relates to an entry in the database
     @PrimaryKey
     @NonNull
-    private int seqIdx;
-    private String seqId;
+    private int taskIdx;
+    private String taskId;
 
     @TypeConverters(TypeConverter.class)
     private List<Step> steps;
     private String imgPrevPath;
+    private int background;
 
     @TypeConverters(TypeConverter.class)
     private List<String> inputs;
 
-    public Sequence() {
+    public Task() {
     }
 
-    public int getSeqIdx() {
-        return seqIdx;
+    public Task(String taskId, int background) {
+        this.taskId = taskId;
+        this.background = background;
     }
 
-    public void setSeqIdx(int seqIdx) {
-        this.seqIdx = seqIdx;
+    public int getTaskIdx() {
+        return taskIdx;
+    }
+
+    public void setTaskIdx(int taskIdx) {
+        this.taskIdx = taskIdx;
     }
 
     public List<Step> getSteps() {
@@ -45,12 +51,12 @@ public class Sequence {
         this.steps = steps;
     }
 
-    public String getSeqId() {
-        return seqId;
+    public String getTaskId() {
+        return taskId;
     }
 
-    public void setSeqId(String seqId) {
-        this.seqId = seqId;
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 
     public String getImgPrevPath() {
@@ -69,16 +75,24 @@ public class Sequence {
         this.inputs = inputs;
     }
 
+    public int getBackground() {
+        return background;
+    }
+
+    public void setBackground(int background) {
+        this.background = background;
+    }
+
     @Override
     public String toString() {
-        String stepsString = new String();
-        for (int i = 0; i < steps.size(); i++) {
-            stepsString += i + ": " + steps.get(i) + "\n";
-        }
+//        String taskString = new String();
+//        for (int i = 0; i < steps.size(); i++) {
+//            taskString += i + ": " + steps.get(i) + "\n";
+//        }
 
-        return "Sequence{" +
-                "===steps===\n" + stepsString +
-                ", \nseqId='" + seqId + '\'' +
+        return "Task{" +
+//                "===steps===\n" + taskString +
+                ", \nseqId='" + taskId + '\'' +
                 ", imgPrevPath='" + imgPrevPath + '\'' +
                 ", inputs=" + inputs +
                 '}';

@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.robosolutions.temiannouncer.model.Sequence;
+import com.robosolutions.temiannouncer.model.Task;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,21 +19,21 @@ import java.util.concurrent.Executors;
 //the schema so you can check the current schema into your version control system.
 
 // https://medium.com/google-developers/understanding-migrations-with-room-f01e04b07929
-@Database(entities = {Sequence.class}, version = 1, exportSchema = false)
-public abstract class SequenceRoomDatabase extends RoomDatabase {
-    public abstract SequenceDao sequenceDao();
+@Database(entities = {Task.class}, version = 1, exportSchema = false)
+public abstract class TaskRoomDatabase extends RoomDatabase {
+    public abstract TaskDao sequenceDao();
 
-    private static volatile SequenceRoomDatabase INSTANCE;
+    private static volatile TaskRoomDatabase INSTANCE;
 
     private static final int THREAD_COUNT = 4;
     // For running DB operations asynchronously
     static final ExecutorService dbWriterExecutor = Executors.newFixedThreadPool(THREAD_COUNT);
 
-    public static SequenceRoomDatabase getDatabase(final Context context) {
+    public static TaskRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             // Can append addCallback(sRoomDatabaseCallback) for future development if needed
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                SequenceRoomDatabase.class, "sequenceDatabase").build();
+                TaskRoomDatabase.class, "taskDatabase").build();
         }
         return INSTANCE;
     }
@@ -48,7 +48,7 @@ public abstract class SequenceRoomDatabase extends RoomDatabase {
             super.onCreate(db);
 
 //            dbWriterExecutor.execute(() -> {
-//                SequenceDao dao = INSTANCE.sequenceDao();
+//                TaskDao dao = INSTANCE.sequenceDao();
 //                dao.deleteAll();
 //
 //                // Can add some default words

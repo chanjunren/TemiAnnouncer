@@ -57,13 +57,13 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
     def lifecycle_version = "2.2.0"
-    // ViewModel
+    // MyViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-    // Lifecycles only (without ViewModel or LiveData)
+    // Lifecycles only (without MyViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
-    // Saved state module for ViewModel
+    // Saved state module for MyViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
     def room_version = "2.2.6"
