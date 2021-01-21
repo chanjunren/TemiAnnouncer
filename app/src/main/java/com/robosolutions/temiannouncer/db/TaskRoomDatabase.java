@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 // https://medium.com/google-developers/understanding-migrations-with-room-f01e04b07929
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
 public abstract class TaskRoomDatabase extends RoomDatabase {
-    public abstract TaskDao sequenceDao();
+    public abstract TaskDao taskDao();
 
     private static volatile TaskRoomDatabase INSTANCE;
 

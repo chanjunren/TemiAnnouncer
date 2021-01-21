@@ -23,9 +23,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     public Adapter(Context mContext, List<Task> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        for (Task task: mData) {
-            System.out.println(task);
-        }
     }
 
     @NonNull

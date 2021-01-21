@@ -1,12 +1,14 @@
 package com.robosolutions.temiannouncer.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.robosolutions.temiannouncer.utils.TypeConverter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Each entity class represents a SQLite table, you can specify the name of the table to be diff from
@@ -17,6 +19,7 @@ public class Task {
     @PrimaryKey
     @NonNull
     private int taskIdx;
+    @ColumnInfo (name="taskId")
     private String taskId;
 
     @TypeConverters(TypeConverter.class)
@@ -28,11 +31,14 @@ public class Task {
     private List<String> inputs;
 
     public Task() {
+        steps = new ArrayList<>();
+
     }
 
     public Task(String taskId, int background) {
         this.taskId = taskId;
         this.background = background;
+        steps = new ArrayList<>();
     }
 
     public int getTaskIdx() {
@@ -85,16 +91,17 @@ public class Task {
 
     @Override
     public String toString() {
-//        String taskString = new String();
-//        for (int i = 0; i < steps.size(); i++) {
-//            taskString += i + ": " + steps.get(i) + "\n";
-//        }
+        String taskString = new String();
+        for (int i = 0; i < steps.size(); i++) {
+            taskString += i + ": " + steps.get(i) + "\n";
+        }
 
-        return "Task{" +
-//                "===steps===\n" + taskString +
-                ", \nseqId='" + taskId + '\'' +
-                ", imgPrevPath='" + imgPrevPath + '\'' +
-                ", inputs=" + inputs +
-                '}';
+        return "Task {\n" +
+                "\t===steps===\n" + taskString +
+                ", \n\ttaskIdx: " + taskIdx +
+                ", \n\ttaskId: '" + taskId + '\'' +
+                ", \n\timgPrevPath: '" + imgPrevPath + '\'' +
+                ", \n\tinputs: " + inputs +
+                "\n}";
     }
 }

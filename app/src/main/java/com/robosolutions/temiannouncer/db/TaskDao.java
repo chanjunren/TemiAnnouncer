@@ -1,6 +1,6 @@
 package com.robosolutions.temiannouncer.db;
-
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -15,7 +15,7 @@ import java.util.List;
 public interface TaskDao {
 
     // https://developer.android.com/reference/androidx/room/OnConflictStrategy.html
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Task task);
 
     @Query("DELETE from taskTable")
