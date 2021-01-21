@@ -16,19 +16,19 @@ import java.util.List;
 @Entity(tableName = "taskTable")
 public class Task {
     // Annotations identify how each part of the class relates to an entry in the database
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int taskIdx;
     @ColumnInfo (name="taskId")
     private String taskId;
 
     @TypeConverters(TypeConverter.class)
-    private List<Step> steps;
+    private ArrayList<Step> steps;
     private String imgPrevPath;
     private int background;
 
     @TypeConverters(TypeConverter.class)
-    private List<String> inputs;
+    private ArrayList<String> inputs;
 
     public Task() {
         steps = new ArrayList<>();
@@ -49,11 +49,11 @@ public class Task {
         this.taskIdx = taskIdx;
     }
 
-    public List<Step> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
 
@@ -73,11 +73,11 @@ public class Task {
         this.imgPrevPath = imgPrevPath;
     }
 
-    public List<String> getInputs() {
+    public ArrayList<String> getInputs() {
         return inputs;
     }
 
-    public void setInputs(List<String> inputs) {
+    public void setInputs(ArrayList<String> inputs) {
         this.inputs = inputs;
     }
 

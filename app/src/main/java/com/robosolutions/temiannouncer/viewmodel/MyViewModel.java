@@ -20,13 +20,11 @@ import java.util.List;
 public class MyViewModel extends AndroidViewModel {
     private final TaskRepository mTaskRepo;
     private LiveData<List<Task>> taskLiveData;
-    private ArrayList<Task> taskArrayList;
 
     public MyViewModel(Application application) {
         super(application);
         mTaskRepo = new TaskRepository(application);
-        taskLiveData = new MutableLiveData<List<Task>>();
-        init();
+        taskLiveData = mTaskRepo.getAllTasks();
     }
 
     public LiveData<List<Task>> getTaskLiveData() {
@@ -34,25 +32,6 @@ public class MyViewModel extends AndroidViewModel {
             taskLiveData = mTaskRepo.getAllTasks();
         }
         return taskLiveData;
-    }
-
-    public void init() {
-        populateTasks();
-    }
-
-    public void populateTasks() {
-        // do async operation to fetch tasks
-        ArrayList<Task> taskArrayList = (ArrayList<Task>) mTaskRepo.getAllTasks().getValue();
-        System.out.println("Initial list: " + taskArrayList);
-        Task task = new Task();
-        task.setBackground(R.drawable.home_temi_logo);
-        task.setTaskId("I'm a task!");
-        task.setTaskIdx(1);
-        insertTask(task);
-        task.setTaskIdx(2);
-        insertTask(task);
-        task.setTaskIdx(3);
-        insertTask(task);
     }
 
     // Created a wrapper insert() method that calls the Repository's insert() method.

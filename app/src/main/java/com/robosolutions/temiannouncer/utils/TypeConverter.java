@@ -5,40 +5,39 @@ import com.google.gson.reflect.TypeToken;
 import com.robosolutions.temiannouncer.model.Step;
 
 import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 
 // Used for converting List of objects into suitable format to store into the Database
 public class TypeConverter {
     @androidx.room.TypeConverter
-    public static List<Step> stringToStepList(String data) {
+    public static ArrayList<Step> stringToStepList(String data) {
         Gson gson = new Gson();
         if (data == null) {
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
-        Type listType = new TypeToken<Step>() {}.getType();
+        Type listType = new TypeToken<ArrayList<Step>>() {}.getType();
         return gson.fromJson(data, listType);
     }
 
     @androidx.room.TypeConverter
-    public static String stepListToString(List<Step> steps) {
+    public static String stepListToString(ArrayList<Step> steps) {
         Gson gson = new Gson();
         return gson.toJson(steps);
     }
 
     @androidx.room.TypeConverter
-    public static List<String> stringToInputList(String data) {
+    public static ArrayList<String> stringToInputList(String data) {
         Gson gson = new Gson();
         if (data == null) {
-            return Collections.emptyList();
+            return new ArrayList<>();
         }
 
-        Type listType = new TypeToken<String>() {}.getType();
+        Type listType = new TypeToken<ArrayList<String>>() {}.getType();
         return gson.fromJson(data, listType);
     }
 
     @androidx.room.TypeConverter
-    public static String inputListToString(List<String> inputs) {
+    public static String inputListToString(ArrayList<String> inputs) {
         Gson gson = new Gson();
         return gson.toJson(inputs);
     }

@@ -92,7 +92,7 @@
             android:layout_marginTop="432dp" />
 
         <EditText
-            android:id="@+id/sequenceIdInput"
+            android:id="@+id/taskIdInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="108dp"

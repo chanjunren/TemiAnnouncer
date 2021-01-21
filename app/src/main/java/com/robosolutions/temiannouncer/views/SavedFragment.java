@@ -74,6 +74,6 @@ public class SavedFragment extends Fragment {
     public void updateTaskViews(ArrayList<Task> tasks) {
         adapter = new Adapter(getActivity(), tasks);
         rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 }
