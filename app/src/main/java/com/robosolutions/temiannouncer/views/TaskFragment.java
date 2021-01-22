@@ -20,9 +20,10 @@ import com.robosolutions.temiannouncer.viewmodel.MyViewModel;
 
 public class TaskFragment extends Fragment {
     private NavController navController;
-    private ImageView saveBtn, backBtn;
+    private ImageView saveBtn, backBtn, addActionBtn;
     private EditText taskTitleInput;
     private MyViewModel viewModel;
+    private TaskPopup popup;
 
     public TaskFragment() {
         // Required empty public constructor
@@ -48,7 +49,13 @@ public class TaskFragment extends Fragment {
         saveBtn = getView().findViewById(R.id.saveTaskBtn);
         taskTitleInput = view.findViewById(R.id.taskIdInput);
         backBtn = view.findViewById(R.id.taskBackBtn);
+        addActionBtn = view.findViewById(R.id.addTaskBtn);
         viewModel = new ViewModelProvider(this.getActivity()).get(MyViewModel.class);
+        popup = new TaskPopup(getActivity());
+
+        addActionBtn.setOnClickListener(v -> {
+            popup.showPromptPage();
+        });
 
         backBtn.setOnClickListener(v -> {
             navController.navigate(R.id.action_taskFragment_to_homeFragment);
