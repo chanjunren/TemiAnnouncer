@@ -17,23 +17,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button_2" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Enter speech text here"
-        tools:layout_editor_absoluteX="597dp"
-        tools:layout_editor_absoluteY="397dp" />
-
     <Button
-        android:id="@+id/saveSpeechBtn"
+        android:id="@+id/selectVidBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="700dp"
-        android:layout_marginTop="524dp"
-        android:text="Save"
+        android:layout_marginStart="688dp"
+        android:layout_marginTop="428dp"
+        android:padding="30dp"
+        android:text="Select Video"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

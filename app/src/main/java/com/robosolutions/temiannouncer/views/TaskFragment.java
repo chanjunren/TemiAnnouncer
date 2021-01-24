@@ -1,4 +1,5 @@
 package com.robosolutions.temiannouncer.views;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,12 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.Task;
 import com.robosolutions.temiannouncer.viewmodel.MyViewModel;
 
 public class TaskFragment extends Fragment {
+    private static final int IMG_REQ_CODE = 1;
+    private static final int VID_REQ_CODE = 2;
+
     private NavController navController;
     private ImageView saveBtn, backBtn, addActionBtn;
     private EditText taskTitleInput;
@@ -51,7 +56,7 @@ public class TaskFragment extends Fragment {
         backBtn = view.findViewById(R.id.taskBackBtn);
         addActionBtn = view.findViewById(R.id.addTaskBtn);
         viewModel = new ViewModelProvider(this.getActivity()).get(MyViewModel.class);
-        popup = new TaskPopup(getActivity());
+        popup = new TaskPopup(this);
 
         addActionBtn.setOnClickListener(v -> {
             popup.showPromptPage();
