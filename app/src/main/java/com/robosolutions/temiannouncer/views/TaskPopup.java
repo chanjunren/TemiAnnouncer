@@ -1,14 +1,15 @@
 package com.robosolutions.temiannouncer.views;
 
 import android.app.Dialog;
+import android.app.LoaderManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.robosolutions.temiannouncer.R;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class TaskPopup extends AppCompatActivity {
+import com.robosolutions.temiannouncer.R;
+
+public class TaskPopup {
 
     private Fragment parent;
     private Dialog dialog;
@@ -66,4 +67,6 @@ public class TaskPopup extends AppCompatActivity {
         });
 
     }
+
+
 }
