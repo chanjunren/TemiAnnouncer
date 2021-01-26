@@ -40,6 +40,28 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="319dp"
             android:layout_marginTop="171dp" />
+
+        <ImageView
+            android:id="@+id/my_image_view"
+            android:layout_width="106dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="552dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/black_gradient"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="700dp"
+            android:layout_marginTop="56dp"
+            android:text="LOGOUT"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
