@@ -98,6 +98,9 @@
         <action
             android:id="@+id/action_signinFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="GoogleSignInAccount"
+            app:argType="com.google.android.gms.auth.api.signin.GoogleSignInAccount" />
     </fragment>
 
 </navigation>

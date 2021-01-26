@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.robosolutions.temiannouncer.R;
 
@@ -64,7 +65,10 @@ public class SigninFragment extends Fragment {
         });
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        Scope READ_DRIVE_SCOPE =
+                new Scope("https://www.googleapis.com/auth/drive.photos.readonly");
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(READ_DRIVE_SCOPE)
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this.getActivity(), gso);

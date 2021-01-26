@@ -1,22 +1,32 @@
 package com.robosolutions.temiannouncer.views;
 
 import android.app.Dialog;
-import android.app.LoaderManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.services.drive.DriveScopes;
 import com.robosolutions.temiannouncer.R;
+import com.robosolutions.temiannouncer.google.DriveServiceHelper;
+import com.robosolutions.temiannouncer.google.MediaRetriever;
+
+import java.util.Collections;
 
 public class TaskPopup {
-
     private Fragment parent;
     private Dialog dialog;
+    private DriveServiceHelper mDriveServiceHelper;
 
     public TaskPopup(Fragment frag) {
         this.parent = frag;
-        dialog = new Dialog(parent.getContext());
+        this.dialog = new Dialog(parent.getContext());
+        GoogleAccountCredential credential =
+                GoogleAccountCredential.usingOAuth2(
+                        parent.getContext(), Collections.singleton(DriveScopes.DRIVE_FILE));
+//        credential.setSelectedAccount()
+//        mDriveServiceHelper =
     }
 
     public void showPromptPage() {
@@ -47,6 +57,9 @@ public class TaskPopup {
         });
 
         Button selectImgBtn = dialog.findViewById(R.id.selectImgBtn);
+        selectImgBtn.setOnClickListener(v -> {
+            mDriveServiceHelper.queryFiles();
+        });
     }
 
     private void showVideoPage() {
@@ -57,6 +70,7 @@ public class TaskPopup {
         });
 
         Button selectImgBtn = dialog.findViewById(R.id.selectVidBtn);
+
     }
 
     private void showSpeechPage() {
@@ -65,7 +79,6 @@ public class TaskPopup {
         exitPrompt.setOnClickListener(v -> {
             dialog.dismiss();
         });
-
     }
 
 

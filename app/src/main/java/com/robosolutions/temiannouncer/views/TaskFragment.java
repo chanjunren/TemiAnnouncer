@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.Task;

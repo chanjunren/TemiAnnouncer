@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.robosolutions.temiannouncer.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-
+        ActionSignIn = SigninFragmentDirections.actionSigninFragmentToHomeFragment();
         view.findViewById(R.id.taskPageBtn).setOnClickListener(this);
         view.findViewById(R.id.confPageBtn).setOnClickListener(this);
         view.findViewById(R.id.savedPageBtn).setOnClickListener(this);

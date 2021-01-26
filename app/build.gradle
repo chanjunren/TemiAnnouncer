@@ -77,9 +77,19 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
     implementation 'com.google.code.gson:gson:2.8.6'
+    // Google Play services Auth split
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    // Google Api Client library and Android extension
+    implementation('com.google.api-client:google-api-client:1.22.0') {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    implementation 'com.google.api-client:google-api-client-android:1.22.0'
+    // Change to the API you want to access:
+    // Below is just an example for People REST API access
+    implementation 'com.google.apis:google-api-services-drive:v3-rev110-1.23.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    apply plugin: "androidx.navigation.safeargs"
 
 }
