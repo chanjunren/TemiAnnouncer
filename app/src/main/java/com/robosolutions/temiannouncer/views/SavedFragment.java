@@ -19,7 +19,7 @@ import android.widget.ImageView;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.Task;
-import com.robosolutions.temiannouncer.viewmodel.MyViewModel;
+import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class SavedFragment extends Fragment {
     private NavController navController;
     private RecyclerView rv;
     private Adapter adapter;
-    private MyViewModel viewModel;
+    private SharedViewModel viewModel;
 
     public SavedFragment() {
         // Required empty public constructor
@@ -54,7 +54,7 @@ public class SavedFragment extends Fragment {
         navController = NavHostFragment.findNavController(getParentFragment());
         backBtn = view.findViewById(R.id.savedBackBtn);
         rv = view.findViewById(R.id.savedCardsRv);
-        viewModel = new ViewModelProvider(this.getActivity()).get(MyViewModel.class);
+        viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
 
         final Observer<List<Task>> taskListObserver = new Observer<List<Task>>() {
             @Override

@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -28,12 +27,18 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
 import com.robosolutions.temiannouncer.R;
+import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
+
+import java.util.logging.Logger;
 
 public class SigninFragment extends Fragment {
+    private static final Logger LOGGER = Logger.getLogger(SigninFragment.class.getName());
+
     private SignInButton signInBtn;
     private GoogleSignInClient mGoogleSignInClient;
     private final String TAG = "SignInFragment";
     private NavController navController;
+    private SharedViewModel viewModel;
 
     public SigninFragment() {
         // Required empty public constructor
@@ -54,6 +59,7 @@ public class SigninFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
         navController = Navigation.findNavController(view);
 
         // Set the dimensions of the sign-in button.
@@ -84,7 +90,7 @@ public class SigninFragment extends Fragment {
     }
 
     private void updateUI(GoogleSignInAccount acc) {
-        System.out.println("Update UI called!");
+        LOGGER.info("Update UI called!");
     }
 
     private void signIn() {
@@ -94,9 +100,13 @@ public class SigninFragment extends Fragment {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
+                        LOGGER.info("Sign in ok");
                         Intent data = result.getData();
                         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                         handleSignInResult(task);
+                    } else {
+                        LOGGER.warning("Launcher failed, please remember to add your device's " +
+                                "Oauth token to the Google Developer Console ");
                     }
                 }
         );
@@ -107,14 +117,14 @@ public class SigninFragment extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
+            viewModel.setGoogleSignInAccount(account);
             // Signed in successfully, show authenticated UI.
             navController.navigate(R.id.action_signinFragment_to_homeFragment);
             updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            LOGGER.warning("signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
     }

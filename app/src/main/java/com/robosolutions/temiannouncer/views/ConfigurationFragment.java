@@ -81,7 +81,6 @@ public class ConfigurationFragment extends Fragment {
     }
 
     private void signOut() {
-        System.out.println("hi");
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(getActivity(), task -> {
                     System.out.println("yes i should appear");

@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        ActionSignIn = SigninFragmentDirections.actionSigninFragmentToHomeFragment();
         view.findViewById(R.id.taskPageBtn).setOnClickListener(this);
         view.findViewById(R.id.confPageBtn).setOnClickListener(this);
         view.findViewById(R.id.savedPageBtn).setOnClickListener(this);

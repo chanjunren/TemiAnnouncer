@@ -1,5 +1,4 @@
 package com.robosolutions.temiannouncer.views;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,7 @@ import android.widget.ImageView;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.Task;
-import com.robosolutions.temiannouncer.viewmodel.MyViewModel;
+import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 public class TaskFragment extends Fragment {
     private static final int IMG_REQ_CODE = 1;
@@ -26,7 +25,7 @@ public class TaskFragment extends Fragment {
     private NavController navController;
     private ImageView saveBtn, backBtn, addActionBtn;
     private EditText taskTitleInput;
-    private MyViewModel viewModel;
+    private SharedViewModel viewModel;
     private TaskPopup popup;
 
     public TaskFragment() {
@@ -54,7 +53,7 @@ public class TaskFragment extends Fragment {
         taskTitleInput = view.findViewById(R.id.taskIdInput);
         backBtn = view.findViewById(R.id.taskBackBtn);
         addActionBtn = view.findViewById(R.id.addTaskBtn);
-        viewModel = new ViewModelProvider(this.getActivity()).get(MyViewModel.class);
+        viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
         popup = new TaskPopup(this);
 
         addActionBtn.setOnClickListener(v -> {
