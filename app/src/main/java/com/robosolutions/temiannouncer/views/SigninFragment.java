@@ -26,14 +26,13 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
+import com.google.api.services.drive.DriveScopes;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 import java.util.logging.Logger;
 
 public class SigninFragment extends Fragment {
-    private static final Logger LOGGER = Logger.getLogger(SigninFragment.class.getName());
-
     private SignInButton signInBtn;
     private GoogleSignInClient mGoogleSignInClient;
     private final String TAG = "SignInFragment";
@@ -74,8 +73,8 @@ public class SigninFragment extends Fragment {
         Scope READ_DRIVE_SCOPE =
                 new Scope("https://www.googleapis.com/auth/drive.photos.readonly");
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestScopes(READ_DRIVE_SCOPE)
                 .requestEmail()
+                .requestScopes(new Scope("https://www.googleapis.com/auth/drive"))
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this.getActivity(), gso);
     }
@@ -90,7 +89,7 @@ public class SigninFragment extends Fragment {
     }
 
     private void updateUI(GoogleSignInAccount acc) {
-        LOGGER.info("Update UI called!");
+        Log.i(TAG, "Update UI called!");
     }
 
     private void signIn() {
@@ -100,12 +99,12 @@ public class SigninFragment extends Fragment {
                 result -> {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
-                        LOGGER.info("Sign in ok");
+                        Log.i(TAG, "Sign in ok");
                         Intent data = result.getData();
                         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
                         handleSignInResult(task);
                     } else {
-                        LOGGER.warning("Launcher failed, please remember to add your device's " +
+                        Log.i(TAG, "Launcher failed, please remember to add your device's " +
                                 "Oauth token to the Google Developer Console ");
                     }
                 }
@@ -124,7 +123,7 @@ public class SigninFragment extends Fragment {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            LOGGER.warning("signInResult:failed code=" + e.getStatusCode());
+            Log.e(TAG, "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
     }

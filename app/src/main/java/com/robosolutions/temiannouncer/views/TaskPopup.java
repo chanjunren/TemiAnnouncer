@@ -1,12 +1,20 @@
 package com.robosolutions.temiannouncer.views;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.common.api.Scope;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.json.gson.GsonFactory;
@@ -14,14 +22,12 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.google.DriveServiceHelper;
-import com.robosolutions.temiannouncer.google.MediaRetriever;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 import java.util.Collections;
-import java.util.logging.Logger;
 
 public class TaskPopup {
-    private static final Logger LOGGER = Logger.getLogger(TaskPopup.class.getName());
+    private static final String TAG = "TaskPopup";
     private Fragment parent;
     private Dialog dialog;
     private DriveServiceHelper mDriveServiceHelper;
@@ -35,12 +41,14 @@ public class TaskPopup {
                 GoogleAccountCredential.usingOAuth2(
                         parent.getContext(), Collections.singleton(DriveScopes.DRIVE_FILE));
 
+        Log.i(TAG, "Account: " + viewModel.getGoogleSignInAccount().getAccount());
         credential.setSelectedAccount(viewModel.getGoogleSignInAccount().getAccount());
         Drive googleDriveService = new Drive.Builder(
                 AndroidHttp.newCompatibleTransport(),
                 new GsonFactory(),
-                credential
-        ).build();
+                credential)
+            .setApplicationName("test")
+            .build();
         mDriveServiceHelper = new DriveServiceHelper(googleDriveService);
     }
 
@@ -73,7 +81,7 @@ public class TaskPopup {
 
         Button selectImgBtn = dialog.findViewById(R.id.selectImgBtn);
         selectImgBtn.setOnClickListener(v -> {
-            mDriveServiceHelper.queryFiles();
+            openFilePicker();
         });
     }
 
@@ -96,5 +104,47 @@ public class TaskPopup {
         });
     }
 
+    private void openFilePicker() {
+        if (mDriveServiceHelper != null) {
+            Intent pickerIntent = mDriveServiceHelper.createImgPickerIntent();
+            ActivityResultLauncher<Intent> pickerLauncher = parent.registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK ||
+                                result.getResultCode() == Activity.RESULT_FIRST_USER) {
+                            Log.i(TAG, "File picker successfully launched");
+                            Intent data = result.getData();
+                            Uri uri = data.getData();
+                            if (uri != null) {
+                                downloadFileFromFilePicker(uri);
+                            } else {
+                                Log.e(TAG, "Uri opened is null");
+                            }
+                        } else {
+                            Log.e(TAG, "File picker launcher failed");
+                        }
+                    }
+            );
+            pickerLauncher.launch(pickerIntent);
+        }
+    }
 
+//    /**
+//     * Opens a file from its {@code uri} returned from the Storage Access Framework file picker
+//     * initiated by {@link #openFilePicker()}.
+//     */
+//    private void openFileFromFilePicker(Uri uri) {
+//        Log.i(TAG, "opening " + uri.getPath());
+//        mDriveServiceHelper.openFileUsingStorageAccessFramework(
+//                parent.getActivity().getContentResolver(), uri)
+//                .addOnSuccessListener(nameAndContent -> {
+//                    String name = nameAndContent.first;
+//                    String content = nameAndContent.second;
+//
+//                    Log.i(TAG, "Name: " + name + " content: " + content);
+//                });
+//    }
+    private void downloadFileFromFilePicker(Uri uri) {
+        mDriveServiceHelper.downloadFileUsingStorageAccessFramework()
+    }
 }
