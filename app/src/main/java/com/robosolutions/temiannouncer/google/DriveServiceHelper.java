@@ -122,13 +122,14 @@ public class DriveServiceHelper {
                     throw new IOException("Empty cursor returned for file");
                 }
                 InputStream is = contentResolver.openInputStream(uri);
-                String outputPath = context.getExternalFilesDir(IMAGES).getPath();
+                String outputPath = context.getExternalFilesDir(IMAGES).getPath() + "/" + name;
+                Log.i(TAG, "current path: " + outputPath);
                 File newImgFile = new File(outputPath);
-                if (newImgFile.exists()) {
-                    throw new Exception("File with the same name already exists!");
+                if (!newImgFile.exists()) {
+                    newImgFile.getParentFile().mkdirs();
+                    newImgFile.createNewFile();
                 }
-                newImgFile.getParentFile().mkdirs();
-                newImgFile.createNewFile();
+
                 byte[] inputData = getBytes(is);
                 writeFile(inputData, outputPath);
 

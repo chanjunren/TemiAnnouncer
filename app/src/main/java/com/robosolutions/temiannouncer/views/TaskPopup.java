@@ -47,7 +47,6 @@ public class TaskPopup {
                 AndroidHttp.newCompatibleTransport(),
                 new GsonFactory(),
                 credential)
-            .setApplicationName("test")
             .build();
         mDriveServiceHelper = new DriveServiceHelper(googleDriveService, parent.getContext());
     }
@@ -144,7 +143,25 @@ public class TaskPopup {
 //                    Log.i(TAG, "Name: " + name + " content: " + content);
 //                });
 //    }
+    /**
+     * Opens a file from its {@code uri} returned from the Storage Access Framework file picker
+     * initiated by {@link #openFilePicker()}.
+     */
     private void downloadFileFromFilePicker(Uri uri) {
-//        mDriveServiceHelper.downloadFileUsingStorageAccessFramework();
+        if (mDriveServiceHelper != null) {
+            Log.d(TAG, "Opening " + uri.getPath());
+
+            mDriveServiceHelper.downloadFileUsingStorageAccessFramework(
+                    parent.getActivity().getContentResolver(), uri)
+                    .addOnSuccessListener(nameAndPath -> {
+                        String name = nameAndPath.first;
+                        String path = nameAndPath.second;
+
+                        Log.i(TAG, name + " download to " + path);
+                    })
+                    .addOnFailureListener(exception ->
+                            Log.e(TAG, "Unable to open file from picker.", exception));
+        }
     }
+
 }
