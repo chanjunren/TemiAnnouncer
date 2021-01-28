@@ -45,21 +45,11 @@
             android:id="@+id/locLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="292dp"
             android:src="@drawable/task_loc_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="286dp"
-            android:layout_marginTop="293dp"/>
-
-        <ImageView
-            android:id="@+id/actLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/task_actions_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="798dp"
-            android:layout_marginTop="293dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/saveTaskBtn"
@@ -82,14 +72,34 @@
             android:layout_marginTop="680dp"/>
 
         <ImageView
-            android:id="@+id/addTaskBtn"
+            android:id="@+id/addActionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="916dp"
+            android:layout_marginTop="368dp"
             android:src="@drawable/task_add_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="432dp" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/addMidActionBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="528dp"
+            android:layout_marginTop="368dp"
+            android:src="@drawable/task_add_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/actLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="916dp"
+            android:layout_marginTop="280dp"
+            android:src="@drawable/task_actions_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/taskIdInput"
@@ -101,6 +111,52 @@
             android:inputType="text"
             app:layout_constraintStart_toEndOf="@+id/titleLabel"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <ImageView
+            android:id="@+id/midActionsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="548dp"
+            android:layout_marginTop="292dp"
+            android:src="@drawable/task_extra_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/locationsContainer"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="481dp">
+            <Spinner
+                android:id="@+id/nextLocSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="376dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/midActionsContainer"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="481dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/destActionsContainer"
+            tools:layout_editor_absoluteX="239dp"
+            tools:layout_editor_absoluteY="481dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

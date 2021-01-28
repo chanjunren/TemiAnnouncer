@@ -3,25 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="1280dp"
-    android:layout_height="800dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/exitPopupTaskBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1128dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="946dp"
+        android:layout_marginTop="126dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_button_2" />
+
     <ImageView
         android:id="@+id/showImgPopupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginStart="267dp"
+        android:layout_marginTop="318dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/task_image_btn" />
@@ -29,8 +30,8 @@
         android:id="@+id/showVideoPopupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="456dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginStart="520dp"
+        android:layout_marginTop="318dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/task_video_btn" />
@@ -41,8 +42,8 @@
         android:id="@+id/showSpeechPopupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="844dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginStart="773dp"
+        android:layout_marginTop="318dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/task_speech_btn" />

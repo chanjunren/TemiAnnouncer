@@ -11,22 +11,25 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.Task;
+import com.robosolutions.temiannouncer.temi.TemiController;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 public class TaskFragment extends Fragment {
-    private static final int IMG_REQ_CODE = 1;
-    private static final int VID_REQ_CODE = 2;
-
     private NavController navController;
     private ImageView saveBtn, backBtn, addActionBtn;
     private EditText taskTitleInput;
     private SharedViewModel viewModel;
     private TaskPopup popup;
+    private Spinner locationSpinner;
+    private ArrayAdapter<String> spinnerAdapter;
+    private TemiController controller;
 
     public TaskFragment() {
         // Required empty public constructor
@@ -48,13 +51,23 @@ public class TaskFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = NavHostFragment.findNavController(getParentFragment());
+        controller = TemiController.getInstance();
 
-        saveBtn = getView().findViewById(R.id.saveTaskBtn);
+        spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,
+             controller.getSavedLocationsAsArray());
+
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        locationSpinner = view.findViewById(R.id.nextLocSpinner);
+        saveBtn = view.findViewById(R.id.saveTaskBtn);
         taskTitleInput = view.findViewById(R.id.taskIdInput);
         backBtn = view.findViewById(R.id.taskBackBtn);
-        addActionBtn = view.findViewById(R.id.addTaskBtn);
+        addActionBtn = view.findViewById(R.id.addActionBtn);
         viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
         popup = new TaskPopup(this);
+        locationSpinner.setAdapter(spinnerAdapter);
 
         addActionBtn.setOnClickListener(v -> {
             popup.showPromptPage();
