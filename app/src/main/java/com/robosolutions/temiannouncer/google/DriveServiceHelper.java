@@ -1,17 +1,21 @@
 package com.robosolutions.temiannouncer.google;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.api.services.drive.Drive;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,9 +26,12 @@ public class DriveServiceHelper {
     private final String TAG = "DrievServiceHelper";
     private final Executor mExecutor = Executors.newSingleThreadExecutor();
     private final Drive mDriveService;
+    private static final String IMAGES = "task_images";
+    private Context context;
 
-    public DriveServiceHelper(Drive mDriveService) {
+    public DriveServiceHelper(Drive mDriveService, Context context) {
         this.mDriveService = mDriveService;
+        this.context = context;
     }
 
 //    /**
@@ -101,7 +108,7 @@ public class DriveServiceHelper {
      * Opens the file at the {@code uri} returned by a Storage Access Framework {@link Intent}
      * created by {@link #createImgPickerIntent()} using the given {@code contentResolver}.
      */
-    public Task<String> downloadFileUsingStorageAccessFramework(
+    public Task<Pair<String, String>> downloadFileUsingStorageAccessFramework(
             ContentResolver contentResolver, Uri uri) {
         return Tasks.call(mExecutor, () -> {
             // Retrieve document's display name from metadata
@@ -115,7 +122,17 @@ public class DriveServiceHelper {
                     throw new IOException("Empty cursor returned for file");
                 }
                 InputStream is = contentResolver.openInputStream(uri);
-                return name;
+                String outputPath = context.getExternalFilesDir(IMAGES).getPath();
+                File newImgFile = new File(outputPath);
+                if (newImgFile.exists()) {
+                    throw new Exception("File with the same name already exists!");
+                }
+                newImgFile.getParentFile().mkdirs();
+                newImgFile.createNewFile();
+                byte[] inputData = getBytes(is);
+                writeFile(inputData, outputPath);
+
+                return Pair.create(name, outputPath);
 
             }catch (Exception e) {
                 Log.e(TAG, e.toString());

@@ -49,7 +49,7 @@ public class TaskPopup {
                 credential)
             .setApplicationName("test")
             .build();
-        mDriveServiceHelper = new DriveServiceHelper(googleDriveService);
+        mDriveServiceHelper = new DriveServiceHelper(googleDriveService, parent.getContext());
     }
 
     public void showPromptPage() {
@@ -145,6 +145,6 @@ public class TaskPopup {
 //                });
 //    }
     private void downloadFileFromFilePicker(Uri uri) {
-        mDriveServiceHelper.downloadFileUsingStorageAccessFramework()
+//        mDriveServiceHelper.downloadFileUsingStorageAccessFramework();
     }
 }
