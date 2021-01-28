@@ -13,8 +13,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.common.api.Scope;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.json.gson.GsonFactory;
@@ -80,7 +78,7 @@ public class TaskPopup {
 
         Button selectImgBtn = dialog.findViewById(R.id.selectImgBtn);
         selectImgBtn.setOnClickListener(v -> {
-            openFilePicker();
+            openFilePickerForImg();
         });
     }
 
@@ -91,7 +89,10 @@ public class TaskPopup {
             dialog.dismiss();
         });
 
-        Button selectImgBtn = dialog.findViewById(R.id.selectVidBtn);
+        Button selectVidBtn = dialog.findViewById(R.id.selectVidBtn);
+        selectVidBtn.setOnClickListener(v -> {
+            openFilePickerForVid();
+        });
 
     }
 
@@ -103,7 +104,7 @@ public class TaskPopup {
         });
     }
 
-    private void openFilePicker() {
+    private void openFilePickerForImg() {
         if (mDriveServiceHelper != null) {
             Intent pickerIntent = mDriveServiceHelper.createImgPickerIntent();
             ActivityResultLauncher<Intent> pickerLauncher = parent.registerForActivityResult(
@@ -115,7 +116,7 @@ public class TaskPopup {
                             Intent data = result.getData();
                             Uri uri = data.getData();
                             if (uri != null) {
-                                downloadFileFromFilePicker(uri);
+                                downloadImgFromFilePicker(uri);
                             } else {
                                 Log.e(TAG, "Uri opened is null");
                             }
@@ -128,30 +129,61 @@ public class TaskPopup {
         }
     }
 
-//    /**
-//     * Opens a file from its {@code uri} returned from the Storage Access Framework file picker
-//     * initiated by {@link #openFilePicker()}.
-//     */
-//    private void openFileFromFilePicker(Uri uri) {
-//        Log.i(TAG, "opening " + uri.getPath());
-//        mDriveServiceHelper.openFileUsingStorageAccessFramework(
-//                parent.getActivity().getContentResolver(), uri)
-//                .addOnSuccessListener(nameAndContent -> {
-//                    String name = nameAndContent.first;
-//                    String content = nameAndContent.second;
-//
-//                    Log.i(TAG, "Name: " + name + " content: " + content);
-//                });
-//    }
     /**
      * Opens a file from its {@code uri} returned from the Storage Access Framework file picker
-     * initiated by {@link #openFilePicker()}.
+     * initiated by {@link #openFilePickerForImg()}.
      */
-    private void downloadFileFromFilePicker(Uri uri) {
+    private void downloadImgFromFilePicker(Uri uri) {
         if (mDriveServiceHelper != null) {
             Log.d(TAG, "Opening " + uri.getPath());
 
-            mDriveServiceHelper.downloadFileUsingStorageAccessFramework(
+            mDriveServiceHelper.downloadImgUsingStorageAccessFramework(
+                    parent.getActivity().getContentResolver(), uri)
+                    .addOnSuccessListener(nameAndPath -> {
+                        String name = nameAndPath.first;
+                        String path = nameAndPath.second;
+
+                        Log.i(TAG, name + " download to " + path);
+                    })
+                    .addOnFailureListener(exception ->
+                            Log.e(TAG, "Unable to open file from picker.", exception));
+        }
+    }
+
+    private void openFilePickerForVid() {
+        if (mDriveServiceHelper != null) {
+            Intent pickerIntent = mDriveServiceHelper.createVidPickerIntent();
+            ActivityResultLauncher<Intent> pickerLauncher = parent.registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK ||
+                                result.getResultCode() == Activity.RESULT_FIRST_USER) {
+                            Log.i(TAG, "File picker successfully launched");
+                            Intent data = result.getData();
+                            Uri uri = data.getData();
+                            if (uri != null) {
+                                downloadVidFromFilePicker(uri);
+                            } else {
+                                Log.e(TAG, "Uri opened is null");
+                            }
+                        } else {
+                            Log.e(TAG, "File picker launcher failed");
+                        }
+                    }
+            );
+            pickerLauncher.launch(pickerIntent);
+        }
+    }
+
+    /**
+     * Opens a file from its {@code uri} returned from the Storage Access Framework file picker
+     * initiated by {@link #openFilePickerForImg()}.
+     */
+    private void downloadVidFromFilePicker(Uri uri) {
+        if (mDriveServiceHelper != null) {
+            Log.d(TAG, "Opening " + uri.getPath());
+
+            mDriveServiceHelper.downloadVidUsingStorageAccessFramework(
                     parent.getActivity().getContentResolver(), uri)
                     .addOnSuccessListener(nameAndPath -> {
                         String name = nameAndPath.first;
