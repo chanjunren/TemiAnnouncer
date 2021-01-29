@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.robosolutions.temiannouncer.R;
-import com.robosolutions.temiannouncer.model.Task;
+import com.robosolutions.temiannouncer.model.TemiTask;
 
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     Context mContext;
-    List<Task> mData;
+    List<TemiTask> mData;
 
-    public Adapter(Context mContext, List<Task> mData) {
+    public Adapter(Context mContext, List<TemiTask> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }

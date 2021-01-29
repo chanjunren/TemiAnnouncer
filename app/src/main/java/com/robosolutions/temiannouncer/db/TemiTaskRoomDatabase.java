@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.robosolutions.temiannouncer.model.Task;
+import com.robosolutions.temiannouncer.model.TemiTask;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,21 +19,21 @@ import java.util.concurrent.Executors;
 //the schema so you can check the current schema into your version control system.
 
 // https://medium.com/google-developers/understanding-migrations-with-room-f01e04b07929
-@Database(entities = {Task.class}, version = 1, exportSchema = false)
-public abstract class TaskRoomDatabase extends RoomDatabase {
-    public abstract TaskDao taskDao();
+@Database(entities = {TemiTask.class}, version = 1, exportSchema = false)
+public abstract class TemiTaskRoomDatabase extends RoomDatabase {
+    public abstract TemiTaskDao taskDao();
 
-    private static volatile TaskRoomDatabase INSTANCE;
+    private static volatile TemiTaskRoomDatabase INSTANCE;
 
     private static final int THREAD_COUNT = 4;
     // For running DB operations asynchronously
     static final ExecutorService dbWriterExecutor = Executors.newFixedThreadPool(THREAD_COUNT);
 
-    public static TaskRoomDatabase getDatabase(final Context context) {
+    public static TemiTaskRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             // Can append addCallback(sRoomDatabaseCallback) for future development if needed
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                TaskRoomDatabase.class, "taskDatabase").build();
+                TemiTaskRoomDatabase.class, "taskDatabase").build();
         }
         return INSTANCE;
     }
@@ -48,7 +48,7 @@ public abstract class TaskRoomDatabase extends RoomDatabase {
             super.onCreate(db);
 
 //            dbWriterExecutor.execute(() -> {
-//                TaskDao dao = INSTANCE.sequenceDao();
+//                TemiTaskDao dao = INSTANCE.sequenceDao();
 //                dao.deleteAll();
 //
 //                // Can add some default words

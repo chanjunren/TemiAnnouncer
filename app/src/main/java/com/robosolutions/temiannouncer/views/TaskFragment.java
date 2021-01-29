@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.robosolutions.temiannouncer.R;
-import com.robosolutions.temiannouncer.model.Task;
+import com.robosolutions.temiannouncer.model.TemiTask;
 import com.robosolutions.temiannouncer.temi.TemiController;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
@@ -54,7 +54,7 @@ public class TaskFragment extends Fragment {
         controller = TemiController.getInstance();
 
         spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,
-             controller.getSavedLocationsAsArray());
+             controller.getSavedLocations());
 
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,9 +78,9 @@ public class TaskFragment extends Fragment {
         });
 
         saveBtn.setOnClickListener(v -> {
-            Task task = new Task(taskTitleInput.getText().toString(), R.drawable.home_temi_logo);
-            viewModel.insertTask(task);
-            System.out.println("Inserted: " + task);
+            TemiTask temiTask = new TemiTask(taskTitleInput.getText().toString(), R.drawable.home_temi_logo);
+            viewModel.insertTask(temiTask);
+            System.out.println("Inserted: " + temiTask);
             navController.navigate(R.id.action_taskFragment_to_homeFragment);
         });
     }

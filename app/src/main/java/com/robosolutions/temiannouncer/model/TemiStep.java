@@ -6,7 +6,7 @@ import org.w3c.dom.ls.LSOutput;
 
 import java.util.HashMap;
 
-public class Step {
+public class TemiStep {
     private String imagePath;
     private int imageDur;
     private String audioPath;
@@ -19,7 +19,7 @@ public class Step {
     // <inputTitle, inputValue>
     private HashMap<String, String> speechInputs;
 
-    public Step() {
+    public TemiStep() {
     }
 
     public String getImagePath() {
@@ -96,7 +96,7 @@ public class Step {
 
     @Override
     public String toString() {
-        return "Step{" +
+        return "TemiStep{" +
                 "imagePath='" + imagePath + '\'' +
                 ", imageDur=" + imageDur +
                 ", audioPath='" + audioPath + '\'' +

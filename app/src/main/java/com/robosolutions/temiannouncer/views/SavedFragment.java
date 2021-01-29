@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.robosolutions.temiannouncer.R;
-import com.robosolutions.temiannouncer.model.Task;
+import com.robosolutions.temiannouncer.model.TemiTask;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 import java.util.ArrayList;
@@ -56,10 +56,10 @@ public class SavedFragment extends Fragment {
         rv = view.findViewById(R.id.savedCardsRv);
         viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
 
-        final Observer<List<Task>> taskListObserver = new Observer<List<Task>>() {
+        final Observer<List<TemiTask>> taskListObserver = new Observer<List<TemiTask>>() {
             @Override
-            public void onChanged(List<Task> tasks) {
-                updateTaskViews((ArrayList<Task>) tasks);
+            public void onChanged(List<TemiTask> tasks) {
+                updateTaskViews((ArrayList<TemiTask>) tasks);
             }
         };
 
@@ -71,8 +71,8 @@ public class SavedFragment extends Fragment {
 
     }
 
-    public void updateTaskViews(ArrayList<Task> tasks) {
-        adapter = new Adapter(getActivity(), tasks);
+    public void updateTaskViews(ArrayList<TemiTask> temiTasks) {
+        adapter = new Adapter(getActivity(), temiTasks);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }

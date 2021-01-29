@@ -9,12 +9,11 @@ import androidx.room.TypeConverters;
 import com.robosolutions.temiannouncer.utils.TypeConverter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // Each entity class represents a SQLite table, you can specify the name of the table to be diff from
 // the class
 @Entity(tableName = "taskTable")
-public class Task {
+public class TemiTask {
     // Annotations identify how each part of the class relates to an entry in the database
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -23,22 +22,22 @@ public class Task {
     private String taskId;
 
     @TypeConverters(TypeConverter.class)
-    private ArrayList<Step> steps;
+    private ArrayList<TemiStep> temiSteps;
     private String imgPrevPath;
     private int background;
 
     @TypeConverters(TypeConverter.class)
     private ArrayList<String> inputs;
 
-    public Task() {
-        steps = new ArrayList<>();
+    public TemiTask() {
+        temiSteps = new ArrayList<>();
 
     }
 
-    public Task(String taskId, int background) {
+    public TemiTask(String taskId, int background) {
         this.taskId = taskId;
         this.background = background;
-        steps = new ArrayList<>();
+        temiSteps = new ArrayList<>();
     }
 
     public int getTaskIdx() {
@@ -49,12 +48,12 @@ public class Task {
         this.taskIdx = taskIdx;
     }
 
-    public ArrayList<Step> getSteps() {
-        return steps;
+    public ArrayList<TemiStep> getTemiSteps() {
+        return temiSteps;
     }
 
-    public void setSteps(ArrayList<Step> steps) {
-        this.steps = steps;
+    public void setTemiSteps(ArrayList<TemiStep> temiSteps) {
+        this.temiSteps = temiSteps;
     }
 
     public String getTaskId() {
@@ -92,12 +91,12 @@ public class Task {
     @Override
     public String toString() {
         String taskString = new String();
-        for (int i = 0; i < steps.size(); i++) {
-            taskString += i + ": " + steps.get(i) + "\n";
+        for (int i = 0; i < temiSteps.size(); i++) {
+            taskString += i + ": " + temiSteps.get(i) + "\n";
         }
 
-        return "Task {\n" +
-                "\t===steps===\n" + taskString +
+        return "TemiTask {\n" +
+                "\t===temiSteps===\n" + taskString +
                 ", \n\ttaskIdx: " + taskIdx +
                 ", \n\ttaskId: '" + taskId + '\'' +
                 ", \n\timgPrevPath: '" + imgPrevPath + '\'' +
