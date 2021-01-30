@@ -72,26 +72,6 @@
             android:layout_marginTop="680dp"/>
 
         <ImageView
-            android:id="@+id/addActionBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="916dp"
-            android:layout_marginTop="368dp"
-            android:src="@drawable/task_add_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/addMidActionBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="528dp"
-            android:layout_marginTop="368dp"
-            android:src="@drawable/task_add_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/actLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,8 +92,6 @@
             app:layout_constraintStart_toEndOf="@+id/titleLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-
         <ImageView
             android:id="@+id/midActionsLabel"
             android:layout_width="wrap_content"
@@ -121,6 +99,25 @@
             android:layout_marginStart="548dp"
             android:layout_marginTop="292dp"
             android:src="@drawable/task_extra_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/addStepBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="420dp"
+            android:text="Add Step"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stepsRv"
+            android:layout_width="1274dp"
+            android:layout_height="315dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="356dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

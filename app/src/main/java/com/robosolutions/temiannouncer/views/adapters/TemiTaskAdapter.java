@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiStep;
+import com.robosolutions.temiannouncer.views.TaskPopup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,13 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
     private List<TemiStep> steps;
     private List<String> locations;
     private StepViewHolder holder;
+    private TaskPopup popup;
 
-    public TemiTaskAdapter(Context context, List<String> locations) {
+    public TemiTaskAdapter(Context context, List<String> locations, List<TemiStep> steps, TaskPopup popup) {
         this.context = context;
-        this.steps = new ArrayList<>();
+        this.steps = steps;
         this.locations = locations;
+        this.popup = popup;
     }
 
     @NonNull
@@ -43,6 +46,11 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
         this.holder = holder;
     }
 
+    public void addStep() {
+        this.steps.add(new TemiStep());
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return steps.size();
@@ -50,8 +58,7 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
 
     // ViewHolder for one card
     public class StepViewHolder extends RecyclerView.ViewHolder {
-        ImageView midActionThumbnail;
-        ImageView destActionThumbnail;
+        ImageView midActionThumbnail, destActionThumbnail, addMidActionBtn, addDestActionBtn;
         Spinner locSpinner;
         ArrayAdapter<String> spinnerAdapter;
 
@@ -59,13 +66,23 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
             super(itemView);
             midActionThumbnail = itemView.findViewById(R.id.midActionImg);
             destActionThumbnail = itemView.findViewById(R.id.destActionImg);
+            addMidActionBtn = itemView.findViewById(R.id.addMidActionBtn);
+            addDestActionBtn = itemView.findViewById(R.id.addDestActionBtn);
             locSpinner = itemView.findViewById(R.id.locSpinner);
 
             spinnerAdapter = new ArrayAdapter<String>(context,
                     android.R.layout.simple_spinner_item, locations);
 
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            locSpinner.setAdapter(holder.spinnerAdapter);
+            locSpinner.setAdapter(spinnerAdapter);
+
+            addMidActionBtn.setOnClickListener(v -> {
+                popup.showPromptPage();
+            });
+
+            addDestActionBtn.setOnClickListener(v -> {
+                popup.showPromptPage();
+            });
         }
     }
 }
