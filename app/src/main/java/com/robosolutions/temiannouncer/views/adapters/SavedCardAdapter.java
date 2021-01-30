@@ -1,4 +1,4 @@
-package com.robosolutions.temiannouncer.views;
+package com.robosolutions.temiannouncer.views.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,12 +15,12 @@ import com.robosolutions.temiannouncer.model.TemiTask;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+public class SavedCardAdapter extends RecyclerView.Adapter<SavedCardAdapter.MyViewHolder> {
 
     Context mContext;
     List<TemiTask> mData;
 
-    public Adapter(Context mContext, List<TemiTask> mData) {
+    public SavedCardAdapter(Context mContext, List<TemiTask> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -29,7 +29,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.task_card_item, parent, false);
+        View v = inflater.inflate(R.layout.card_item_saved_card, parent, false);
         return new MyViewHolder(v);
     }
 

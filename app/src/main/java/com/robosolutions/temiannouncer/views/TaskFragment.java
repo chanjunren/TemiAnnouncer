@@ -20,6 +20,7 @@ import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiTask;
 import com.robosolutions.temiannouncer.temi.TemiController;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
+import com.robosolutions.temiannouncer.views.adapters.TemiTaskAdapter;
 
 public class TaskFragment extends Fragment {
     private NavController navController;
@@ -27,8 +28,7 @@ public class TaskFragment extends Fragment {
     private EditText taskTitleInput;
     private SharedViewModel viewModel;
     private TaskPopup popup;
-    private Spinner locationSpinner;
-    private ArrayAdapter<String> spinnerAdapter;
+    private TemiTaskAdapter temiTaskAdapter;
     private TemiController controller;
 
     public TaskFragment() {
@@ -52,22 +52,14 @@ public class TaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = NavHostFragment.findNavController(getParentFragment());
         controller = TemiController.getInstance();
+        temiTaskAdapter = new TemiTaskAdapter(getContext(), controller.getSavedLocations());
 
-        spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,
-             controller.getSavedLocations());
-
-
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-        locationSpinner = view.findViewById(R.id.nextLocSpinner);
         saveBtn = view.findViewById(R.id.saveTaskBtn);
         taskTitleInput = view.findViewById(R.id.taskIdInput);
         backBtn = view.findViewById(R.id.taskBackBtn);
         addActionBtn = view.findViewById(R.id.addActionBtn);
         viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
         popup = new TaskPopup(this);
-        locationSpinner.setAdapter(spinnerAdapter);
 
         addActionBtn.setOnClickListener(v -> {
             popup.showPromptPage();

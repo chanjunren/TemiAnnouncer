@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiTask;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
+import com.robosolutions.temiannouncer.views.adapters.SavedCardAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class SavedFragment extends Fragment {
     private ImageView backBtn;
     private NavController navController;
     private RecyclerView rv;
-    private Adapter adapter;
+    private SavedCardAdapter savedCardAdapter;
     private SharedViewModel viewModel;
 
     public SavedFragment() {
@@ -72,8 +73,8 @@ public class SavedFragment extends Fragment {
     }
 
     public void updateTaskViews(ArrayList<TemiTask> temiTasks) {
-        adapter = new Adapter(getActivity(), temiTasks);
-        rv.setAdapter(adapter);
+        savedCardAdapter = new SavedCardAdapter(getActivity(), temiTasks);
+        rv.setAdapter(savedCardAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 }

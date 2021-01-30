@@ -30,7 +30,9 @@ public class TemiController {
         return (ArrayList<String>) locations;
     }
 
-    public void executeSequence(TemiTask temiTask) {
+    public void executeTemiTask(TemiTask temiTask) {
 
     }
+
+
 }
