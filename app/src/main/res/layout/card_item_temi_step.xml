@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/task_step_container_bg"
-    android:layout_width="1132px"
-    android:layout_height="150px"
-    android:layout_margin="40px">
+    android:layout_width="1132dp"
+    android:layout_height="150dp"
+    android:layout_margin="40dp">
     <Spinner
         android:id="@+id/locSpinner"
-        android:layout_marginStart="100px"
-        android:layout_width="344px"
+        android:layout_marginStart="100dp"
+        android:layout_width="344dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,7 +18,7 @@
         android:id="@+id/divider1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="444px"
+        android:layout_marginStart="444dp"
         android:src="@drawable/task_step_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,17 +26,17 @@
         android:id="@+id/addMidActionBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="616px"
-        android:layout_marginTop="40px"
+        android:layout_marginStart="616dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/task_add_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/midActionImg"
-        android:layout_width="344px"
+        android:layout_width="344dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="444px"
-        android:layout_marginTop="40px"
+        android:layout_marginStart="444dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +46,7 @@
         android:id="@+id/divider2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="788px"
+        android:layout_marginStart="788dp"
         android:src="@drawable/task_step_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,16 +54,16 @@
         android:id="@+id/addDestActionBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="960px"
-        android:layout_marginTop="40px"
+        android:layout_marginStart="960dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/task_add_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/destActionImg"
-        android:layout_width="344px"
+        android:layout_width="344dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="788px"
+        android:layout_marginStart="788dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
