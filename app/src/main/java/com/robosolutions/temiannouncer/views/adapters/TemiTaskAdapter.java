@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiStep;
 import com.robosolutions.temiannouncer.model.actions.TemiAction;
-import com.robosolutions.temiannouncer.views.dialogs.SelectActionDialog;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -107,7 +107,41 @@
     </fragment>
     <dialog
         android:id="@+id/taskDialogFragment"
-        android:name="com.robosolutions.temiannouncer.views.dialogs.SelectActionDialog"
-        android:label="TaskDialogFragment" />
+        android:name="com.robosolutions.temiannouncer.views.dialogs.ActionDialog"
+        android:label="TaskDialogFragment" >
+        <action
+            android:id="@+id/action_taskDialogFragment_to_imageDialog"
+            app:destination="@id/imageDialog" />
+        <action
+            android:id="@+id/action_taskDialogFragment_to_speechDialog"
+            app:destination="@id/speechDialog" />
+        <action
+            android:id="@+id/action_taskDialogFragment_to_videoDialog"
+            app:destination="@id/videoDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/imageDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.ImageDialog"
+        android:label="ImageDialog" >
+        <action
+            android:id="@+id/action_imageDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/speechDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.SpeechDialog"
+        android:label="SpeechDialog" >
+        <action
+            android:id="@+id/action_speechDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/videoDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.VideoDialog"
+        android:label="VideoDialog" >
+        <action
+            android:id="@+id/action_videoDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
 
 </navigation>

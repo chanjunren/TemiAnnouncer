@@ -22,7 +22,6 @@ import com.robosolutions.temiannouncer.model.TemiStep;
 import com.robosolutions.temiannouncer.temi.TemiController;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 import com.robosolutions.temiannouncer.views.adapters.TemiTaskAdapter;
-import com.robosolutions.temiannouncer.views.dialogs.SelectActionDialog;
 
 import java.util.ArrayList;
 

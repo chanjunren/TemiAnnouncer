@@ -10,6 +10,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.util.Pair;
 import android.util.Size;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -30,10 +31,21 @@ public class DriveServiceHelper {
     private final Executor mExecutor = Executors.newSingleThreadExecutor();
     private final Drive mDriveService;
     private Context context;
+    private static DriveServiceHelper INSTANCE;
 
-    public DriveServiceHelper(Drive mDriveService, Context context) {
+    public DriveServiceHelper(Drive mDriveService) {
         this.mDriveService = mDriveService;
-        this.context = context;
+    }
+
+    public DriveServiceHelper getInstanceFor(Context context) {
+        if (INSTANCE == null) {
+            Log.e(TAG, "DriveServiceHelper has not been initialized");
+            Toast.makeText(context, "Error: DriveServiceHelper has not been initialized",
+                    Toast.LENGTH_LONG).show();
+        }
+        INSTANCE.setContext(context);
+        return INSTANCE;
+
     }
 
     /**
@@ -163,5 +175,9 @@ public class DriveServiceHelper {
         FileOutputStream out = new FileOutputStream(fileName);
         out.write(data);
         out.close();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

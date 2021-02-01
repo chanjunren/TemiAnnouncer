@@ -1,48 +1,60 @@
 package com.robosolutions.temiannouncer.views.dialogs;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.robosolutions.temiannouncer.R;
-import com.robosolutions.temiannouncer.google.DriveServiceHelper;
-import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 // onAttach -> onCreate -> onCreateDialog -> onCreateView -> onViewCreated -> onDestroy.
 
 
-public class SelectActionDialog extends DialogFragment {
+public class ActionDialog extends DialogFragment {
     private static final String TAG = "SelectActionDialog";
-    private DriveServiceHelper mDriveServiceHelper;
-    private SharedViewModel viewModel;
+    private NavController navController;
     private ImageView imgPopupBtn, videoPopupBtn, speechPopupBtn, exitBtn;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        navController = NavHostFragment.findNavController(this);
+
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.popup_task, container);
+        return inflater.inflate(R.layout.dialog_select_task, container);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imgPopupBtn = view.findViewById(R.id.showImgPopupBtn);
+        videoPopupBtn = view.findViewById(R.id.showVideoPopupBtn);
+        speechPopupBtn = view.findViewById(R.id.showSpeechPopupBtn);
+        exitBtn = view.findViewById(R.id.exitPopupTaskBtn);
+        imgPopupBtn.setOnClickListener(v -> {
+            navController.navigate(R.id.action_taskDialogFragment_to_imageDialog);
+        });
+        videoPopupBtn.setOnClickListener(v -> {
+            navController.navigate(R.id.action_taskDialogFragment_to_videoDialog);
+        });
+        speechPopupBtn.setOnClickListener(v -> {
+            navController.navigate(R.id.action_taskDialogFragment_to_speechDialog);
+        });
+        exitBtn.setOnClickListener(v -> {
+            dismiss();
+        });
     }
 
     @Override
@@ -50,40 +62,10 @@ public class SelectActionDialog extends DialogFragment {
         super.onDestroyView();
     }
 
-//    public SelectActionDialog(Fragment frag) {
-//        this.viewModel = new ViewModelProvider(parent.getActivity()).get(SharedViewModel.class);
-//        GoogleAccountCredential credential =
-//                GoogleAccountCredential.usingOAuth2(
-//                        parent.getContext(), Collections.singleton(DriveScopes.DRIVE_FILE));
-//
-//        Log.i(TAG, "Account: " + viewModel.getGoogleSignInAccount().getAccount());
-//        credential.setSelectedAccount(viewModel.getGoogleSignInAccount().getAccount());
-//        Drive googleDriveService = new Drive.Builder(
-//                AndroidHttp.newCompatibleTransport(),
-//                new GsonFactory(),
-//                credential)
-//            .build();
-//        mDriveServiceHelper = new DriveServiceHelper(googleDriveService, parent.getContext());
-//    }
 
 //    private void showPromptPageForResult() {
 //        dialog.setContentView(R.layout.popup_task);
-//        ImageView imgPopupBtn = dialog.findViewById(R.id.showImgPopupBtn);
-//        ImageView videoPopupBtn = dialog.findViewById(R.id.showVideoPopupBtn);
-//        ImageView speechPopupBtn = dialog.findViewById(R.id.showSpeechPopupBtn);
-//        ImageView exitPrompt = dialog.findViewById(R.id.exitPopupTaskBtn);
-//        imgPopupBtn.setOnClickListener(v -> {
-//            showImgPage();
-//        });
-//        videoPopupBtn.setOnClickListener(v -> {
-//            showVideoPage();
-//        });
-//        speechPopupBtn.setOnClickListener(v -> {
-//            showSpeechPage();
-//        });
-//        exitPrompt.setOnClickListener(v -> {
-//            dialog.dismiss();
-//        });
+
 //        dialog.show();
 //    }
 //

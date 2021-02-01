@@ -26,11 +26,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.tasks.Task;
-import com.google.api.services.drive.DriveScopes;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
-
-import java.util.logging.Logger;
 
 public class SigninFragment extends Fragment {
     private SignInButton signInBtn;
@@ -116,7 +113,7 @@ public class SigninFragment extends Fragment {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            viewModel.setGoogleSignInAccount(account);
+            viewModel.initializeGoogleServices(account, getContext());
             // Signed in successfully, show authenticated UI.
             navController.navigate(R.id.action_signinFragment_to_homeFragment);
             updateUI(account);
