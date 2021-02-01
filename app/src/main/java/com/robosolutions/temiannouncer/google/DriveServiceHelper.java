@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -88,8 +90,9 @@ public class DriveServiceHelper {
                 byte[] inputData = getBytes(is);
                 writeFile(inputData, outputPath);
 
-//                Bitmap bitmap = contentResolver.loadThumbnail(uri, new Size(50, 50), null);
-                Bitmap bitmap = null;
+                int THUMB_SIZE = 64;
+                Bitmap bitmap = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(newImgFile.getAbsolutePath()),
+                        THUMB_SIZE, THUMB_SIZE);
                 ImageAction action = new ImageAction(outputPath, bitmap, -1, name);
 
                 return action;

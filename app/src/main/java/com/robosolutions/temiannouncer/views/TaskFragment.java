@@ -32,7 +32,6 @@ public class TaskFragment extends Fragment {
     private SharedViewModel viewModel;
     private TemiTaskAdapter temiTaskAdapter;
     private TemiController controller;
-    private ArrayList<TemiStep> steps;
     private Button addStepBtn;
     private RecyclerView stepsRv;
 
@@ -57,19 +56,17 @@ public class TaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = NavHostFragment.findNavController(getParentFragment());
         controller = TemiController.getInstance();
-
-        this.steps = new ArrayList<>();
-        steps.add(new TemiStep());
+        viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
+        viewModel.initializeForTaskCreation();
 
         temiTaskAdapter = new TemiTaskAdapter(getContext(), controller.getSavedLocations(),
-                steps, navController);
+                viewModel.getCurrentTask().getTemiSteps(), navController, viewModel);
 
         saveBtn = view.findViewById(R.id.saveTaskBtn);
         taskTitleInput = view.findViewById(R.id.taskIdInput);
         addStepBtn = view.findViewById(R.id.addStepBtn);
         stepsRv = view.findViewById(R.id.stepsRv);
         backBtn = view.findViewById(R.id.taskBackBtn);
-        viewModel = new ViewModelProvider(this.getActivity()).get(SharedViewModel.class);
 
         stepsRv.setAdapter(temiTaskAdapter);
         stepsRv.setLayoutManager(new LinearLayoutManager(getContext(),

@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiStep;
 import com.robosolutions.temiannouncer.model.actions.TemiAction;
+import com.robosolutions.temiannouncer.utils.ActionEnum;
+import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +27,16 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
     private List<String> locations;
     private StepViewHolder holder;
     private NavController navController;
+    private SharedViewModel viewModel;
 
     public TemiTaskAdapter(Context context, List<String> locations, List<TemiStep> steps,
-                           NavController controller) {
+                           NavController controller, SharedViewModel viewModel) {
         this.context = context;
         this.steps = steps;
+        locations.add(new String("Stay"));
         this.locations = locations;
         this.navController = controller;
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -64,7 +69,6 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
         ImageView midActionThumbnail, destActionThumbnail, addMidActionBtn, addDestActionBtn;
         Spinner locSpinner;
         ArrayAdapter<String> spinnerAdapter;
-        int index;
 
         public StepViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,12 +85,18 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
             locSpinner.setAdapter(spinnerAdapter);
 
             addMidActionBtn.setOnClickListener(v -> {
+                viewModel.setCurrentStepIndex(getAdapterPosition());
+                viewModel.setActionEnum(ActionEnum.MID_ACTION);
                 navController.navigate(R.id.action_taskFragment_to_taskDialogFragment);
             });
 
             addDestActionBtn.setOnClickListener(v -> {
+                viewModel.setCurrentStepIndex(getAdapterPosition());
+                viewModel.setActionEnum(ActionEnum.DEST_ACTION);
                 navController.navigate(R.id.action_taskFragment_to_taskDialogFragment);
             });
         }
+
+
     }
 }
