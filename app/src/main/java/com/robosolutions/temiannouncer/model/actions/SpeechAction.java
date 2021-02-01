@@ -15,4 +15,9 @@ public class SpeechAction implements TemiAction {
     public void executeAction() {
 
     }
+
+    @Override
+    public int getDuration() {
+        return 0;
+    }
 }

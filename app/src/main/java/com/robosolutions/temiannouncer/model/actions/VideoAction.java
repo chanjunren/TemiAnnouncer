@@ -18,6 +18,11 @@ public class VideoAction implements TemiAction {
 
     }
 
+    @Override
+    public int getDuration() {
+        return 0;
+    }
+
     public String getVideoPath() {
         return videoPath;
     }

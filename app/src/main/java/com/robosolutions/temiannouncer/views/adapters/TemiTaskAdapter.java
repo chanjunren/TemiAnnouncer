@@ -9,11 +9,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiStep;
-import com.robosolutions.temiannouncer.views.TaskPopup;
+import com.robosolutions.temiannouncer.model.actions.TemiAction;
+import com.robosolutions.temiannouncer.views.dialogs.SelectActionDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,14 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
     private List<TemiStep> steps;
     private List<String> locations;
     private StepViewHolder holder;
-    private TaskPopup popup;
+    private NavController navController;
 
-    public TemiTaskAdapter(Context context, List<String> locations, List<TemiStep> steps, TaskPopup popup) {
+    public TemiTaskAdapter(Context context, List<String> locations, List<TemiStep> steps,
+                           NavController controller) {
         this.context = context;
         this.steps = steps;
         this.locations = locations;
-        this.popup = popup;
+        this.navController = controller;
     }
 
     @NonNull
@@ -58,9 +61,11 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
 
     // ViewHolder for one card
     public class StepViewHolder extends RecyclerView.ViewHolder {
+        private ArrayList<TemiAction> actions;
         ImageView midActionThumbnail, destActionThumbnail, addMidActionBtn, addDestActionBtn;
         Spinner locSpinner;
         ArrayAdapter<String> spinnerAdapter;
+        int index;
 
         public StepViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,11 +82,11 @@ public class TemiTaskAdapter extends RecyclerView.Adapter<TemiTaskAdapter.StepVi
             locSpinner.setAdapter(spinnerAdapter);
 
             addMidActionBtn.setOnClickListener(v -> {
-                popup.showPromptPage();
+                navController.navigate(R.id.action_taskFragment_to_taskDialogFragment);
             });
 
             addDestActionBtn.setOnClickListener(v -> {
-                popup.showPromptPage();
+                navController.navigate(R.id.action_taskFragment_to_taskDialogFragment);
             });
         }
     }

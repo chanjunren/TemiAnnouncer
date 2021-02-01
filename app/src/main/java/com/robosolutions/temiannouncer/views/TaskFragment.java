@@ -13,18 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import com.robosolutions.temiannouncer.R;
 import com.robosolutions.temiannouncer.model.TemiStep;
-import com.robosolutions.temiannouncer.model.TemiTask;
 import com.robosolutions.temiannouncer.temi.TemiController;
 import com.robosolutions.temiannouncer.viewmodel.SharedViewModel;
 import com.robosolutions.temiannouncer.views.adapters.TemiTaskAdapter;
+import com.robosolutions.temiannouncer.views.dialogs.SelectActionDialog;
 
 import java.util.ArrayList;
 
@@ -33,7 +31,6 @@ public class TaskFragment extends Fragment {
     private ImageView saveBtn, backBtn;
     private EditText taskTitleInput;
     private SharedViewModel viewModel;
-    private TaskPopup popup;
     private TemiTaskAdapter temiTaskAdapter;
     private TemiController controller;
     private ArrayList<TemiStep> steps;
@@ -61,13 +58,12 @@ public class TaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = NavHostFragment.findNavController(getParentFragment());
         controller = TemiController.getInstance();
-        popup = new TaskPopup(this);
 
         this.steps = new ArrayList<>();
         steps.add(new TemiStep());
 
         temiTaskAdapter = new TemiTaskAdapter(getContext(), controller.getSavedLocations(),
-                steps, popup);
+                steps, navController);
 
         saveBtn = view.findViewById(R.id.saveTaskBtn);
         taskTitleInput = view.findViewById(R.id.taskIdInput);
@@ -83,6 +79,7 @@ public class TaskFragment extends Fragment {
         addStepBtn.setOnClickListener(v -> {
             temiTaskAdapter.addStep();
         });
+
         backBtn.setOnClickListener(v -> {
             navController.navigate(R.id.action_taskFragment_to_homeFragment);
         });

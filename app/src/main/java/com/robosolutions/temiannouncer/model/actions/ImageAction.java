@@ -20,6 +20,8 @@ public class ImageAction implements TemiAction {
 
     }
 
+
+
     public String getImgPath() {
         return imgPath;
     }
@@ -35,7 +37,7 @@ public class ImageAction implements TemiAction {
     public void setImgThumbnail(Bitmap imgThumbnail) {
         this.imgThumbnail = imgThumbnail;
     }
-
+    @Override
     public int getDuration() {
         return duration;
     }

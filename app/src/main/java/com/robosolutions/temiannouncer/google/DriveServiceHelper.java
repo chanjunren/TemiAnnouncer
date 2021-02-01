@@ -4,15 +4,17 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.OpenableColumns;
 import android.util.Log;
 import android.util.Pair;
+import android.util.Size;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.api.services.drive.Drive;
+import com.robosolutions.temiannouncer.model.actions.ImageAction;
 import com.robosolutions.temiannouncer.utils.Values;
 
 import java.io.ByteArrayOutputStream;
@@ -49,7 +51,7 @@ public class DriveServiceHelper {
      * Opens the file at the {@code uri} returned by a Storage Access Framework {@link Intent}
      * created by {@link #createImgPickerIntent()} using the given {@code contentResolver}.
      */
-    public Task<Pair<String, String>> downloadImgUsingStorageAccessFramework(
+    public Task<ImageAction> downloadImgUsingStorageAccessFramework(
             ContentResolver contentResolver, Uri uri) {
         return Tasks.call(mExecutor, () -> {
             // Retrieve document's display name from metadata
@@ -74,7 +76,11 @@ public class DriveServiceHelper {
                 byte[] inputData = getBytes(is);
                 writeFile(inputData, outputPath);
 
-                return Pair.create(name, outputPath);
+//                Bitmap bitmap = contentResolver.loadThumbnail(uri, new Size(50, 50), null);
+                Bitmap bitmap = null;
+                ImageAction action = new ImageAction(outputPath, bitmap, -1, name);
+
+                return action;
 
             }catch (Exception e) {
                 Log.e(TAG, e.toString());
