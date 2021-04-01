@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signinFragment">
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.robosolutions.temiannouncer.views.TaskFragment"
+        android:label="fragment_new_task"
+        tools:layout="@layout/fragment_task" >
+        <action
+            android:id="@+id/action_taskFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_taskDialogFragment"
+            app:destination="@id/taskDialogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.robosolutions.temiannouncer.views.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_newTaskFragment"
+            app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_configurationFragment"
+            app:destination="@id/confFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_resourcesFragment"
+            app:destination="@id/resourcesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confFragment"
+        android:name="com.robosolutions.temiannouncer.views.ConfigurationFragment"
+        android:label="fragment_configuration"
+        tools:layout="@layout/fragment_configuration" >
+        <action
+            android:id="@+id/action_confFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_confFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.robosolutions.temiannouncer.views.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.robosolutions.temiannouncer.views.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.robosolutions.temiannouncer.views.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_savedFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resourcesFragment"
+        android:name="com.robosolutions.temiannouncer.views.ResourcesFragment"
+        android:label="fragment_resources"
+        tools:layout="@layout/fragment_resources" >
+        <action
+            android:id="@+id/action_resourcesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signinFragment"
+        android:name="com.robosolutions.temiannouncer.views.SigninFragment"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_signinFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="GoogleSignInAccount"
+            app:argType="com.google.android.gms.auth.api.signin.GoogleSignInAccount" />
+    </fragment>
+    <dialog
+        android:id="@+id/taskDialogFragment"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.ActionDialog"
+        android:label="TaskDialogFragment" >
+        <action
+            android:id="@+id/action_taskDialogFragment_to_imageDialog"
+            app:destination="@id/imageDialog" />
+        <action
+            android:id="@+id/action_taskDialogFragment_to_speechDialog"
+            app:destination="@id/speechDialog" />
+        <action
+            android:id="@+id/action_taskDialogFragment_to_videoDialog"
+            app:destination="@id/videoDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/imageDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.ImageDialog"
+        android:label="ImageDialog" >
+        <action
+            android:id="@+id/action_imageDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/speechDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.SpeechDialog"
+        android:label="SpeechDialog" >
+        <action
+            android:id="@+id/action_speechDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/videoDialog"
+        android:name="com.robosolutions.temiannouncer.views.dialogs.VideoDialog"
+        android:label="VideoDialog" >
+        <action
+            android:id="@+id/action_videoDialog_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </dialog>
+
+</navigation>

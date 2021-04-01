@@ -14,6 +14,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
     }
 
     buildTypes {
@@ -26,14 +28,74 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    def nav_version = "2.3.2"
+    // Java language implementation
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha05"
+
+    def fragment_version = "1.2.5"
+    implementation "androidx.fragment:fragment:$fragment_version"
+    apply plugin: "androidx.navigation.safeargs"
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    def lifecycle_version = "2.2.0"
+    // MyViewModelw
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // Lifecycles only (without SharedViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    // Saved state module for SharedViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+    def room_version = "2.2.6"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    // Google Play services Auth split
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    // Google Api Client library and Android extension
+    implementation('com.google.api-client:google-api-client:1.22.0') {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    implementation 'com.google.api-client:google-api-client-android:1.22.0'
+    // Change to the API you want to access:
+    // Below is just an example for People REST API access
+    implementation 'com.google.apis:google-api-services-drive:v3-rev110-1.23.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    apply plugin: "androidx.navigation.safeargs"
+
+    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    implementation 'com.robotemi:sdk-usa:0.10.40'
+
 }
